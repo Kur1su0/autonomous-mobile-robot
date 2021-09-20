@@ -11,7 +11,8 @@ close all
 clc
 
 %% Parameters
-
+max_speed = 5;
+max_steering_angle = pi /4;
 % Workspace Size
 
 xlim([0 200])
@@ -36,34 +37,29 @@ initRobot = recBot(x,y,theta(1));
 
 %get transfotmed & rotated
 movement = [20+x 30+y pi/6+theta(1)];
-% [finalX,finalY] = moveRotate([x(1),y(1)],[20, 30, pi/6]);
+%[finalX,finalY] = moveRotate([x(1),y(1)],movement)
 
 %get final Robot Model
 finalRobot = recBot(movement(1),movement(2),movement(3));
-% finalRobot = recBot(finalX,finalY,pi/6);
+
 
 %plot init and final pos
 hold on
-grid on
-xlabel('x [m]');ylabel('y [m]')
-plot(initRobot(3:end,1),initRobot(3:end,2),'--');
+plot(initRobot(3:end,1),initRobot(3:end,2),'-');
 plot(initRobot(1:2,1),initRobot(1:2,2),'r-');
 plot(initRobot(1,1),initRobot(1,2),'r.');
 
-text(x(1)+10, y(1), sprintf('(%d,%d,%f )', x(1),y(1),theta(1)));
-str = sprintf("HW1 Part1");
-title(str );
+text(x(1)+10, y(1), sprintf('(%f,%f)', x(1),y(1)));
+
+title( sprintf("move to x+20,y+30 w/ %f+pi/4=",)
 plot(finalRobot(3:end,1),finalRobot(3:end,2),'-');
 plot(finalRobot(1:2,1),finalRobot(1:2,2),'r-');
 plot(finalRobot(1,1),finalRobot(1,2),'r.');
-text(movement(1)+10, movement(2), sprintf('(%d,%d, %f)', movement(1),movement(2),movement(3)));
-% text(finalX+10, finalY, sprintf('(%d,%d, %f)', finalX,finalY,movement(3)));
-
-legend("before","after");
+text(movement(1)+10, movement(2), sprintf('(%f,%f)', movement(1),movement(2)));
+hold off
 xlim([0 200])
 ylim([0 200])
 axis square;
-hold off
 
 
 

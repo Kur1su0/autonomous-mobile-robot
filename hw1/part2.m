@@ -25,6 +25,9 @@ p1.theta = theta;
 %final position
 finalPos.x=randomNum(0,200);
 finalPos.y=randomNum(0,200);
+% finalPos.x= randomNum(0,119);
+% finalPos.y= 130;
+
 
 %% Robot Initial Pose
 
@@ -32,33 +35,33 @@ finalPos.y=randomNum(0,200);
 
 
 %get transfotmed & rotated from part 1
-movement = [20 30 0];
+movement = [20 30 pi/6];
 
-[initPos.x,initPos.y] = moveRotate([p1.x,p1.y],movement);
-initPos.theta = theta ;
-initRobot = recBot(initPos.x,initPos.y,initPos.theta+movement(3));
+%[initPos.x,initPos.y] = moveRotate([p1.x,p1.y],movement);
+%initPos.theta = theta ;
+initRobot = recBot(p1.x+movement(1),p1.y+movement(2),p1.theta+movement(3));
 
 
 % finalPos.x= initPos.x - 30;
 % finalPos.y=initPos.y;
 %get final Robot Model
-finalRobot = recBot(finalPos.x,finalPos.y,theta+movement(3));
+%finalRobot = recBot(finalPos.x,finalPos.y,theta+movement(3));
 %recBot(finalPos.x,finalPos.y,theta+movement(3))
 x = [];
 y = [];
 
 
-x(1) = initPos.x;
-y(1) = initPos.y;
-theta_list(1) = theta;
+x(1) = p1.x+20;
+y(1) = p1.y+30;
+theta_list(1) = p1.theta+movement(3);
 %thetaD=atan2((finalPos.y-y(1)),(finalPos.x- x(1)));
 
 %disp(sprintf('atan2 =%f',thetaD));
 
 
 %prepare for moving to goal.
-Kv=0.1;
-Kp=0.9;
+Kv=0.35;
+Kp=1;
 maxVel = 5;
 maxSteer = pi/4;
 
@@ -73,15 +76,22 @@ runningVel = 0;
 
 
 fig=figure(1);
+hold on
+title("Part ")
 set(fig,'position',[100 100 800 800]);
 f1=subplot(4,2,[1,2,3,4]);
+grid on;
+
 
 
 
 
 f2=subplot(4,2,7);
+grid on;
+ylabel("Velocity[m/s]")
+xlabel("time[0.1s]")
 
-f3=subplot(4,2,8);
+f3=subplot(4,2,8);grid on;
 vlist = [];
 vlist(1) = 0;
 
@@ -92,15 +102,21 @@ while 1
     d=sqrt((finalPos.x-x(i))^2+(finalPos.y-y(i))^2);
     
     thetaD=atan2((finalPos.y-y(i)),(finalPos.x- x(i)));
-    if thetaD>=pi
-            thetaD=thetaD-2*pi;
-    elseif thetaD<= 0 %XXX
-            thetaD=thetaD+2*pi;
-    end
-    
-    
-    theta_diff=thetaD-theta_list(i);
 
+    theta_diff=atan2(sin(thetaD-theta_list(i)),cos(thetaD-theta_list(i)  ) ) ;
+%     theta_diff=thetaD-theta_list(i);
+%     if theta_diff>pi
+%         theta_diff=theta_diff-2*pi;
+%         disp("LARGE")
+%     elseif theta_diff<-pi
+%         theta_diff=theta_diff+2*pi;
+%         disp("SMALL")
+%     end
+%     
+    
+    
+    
+    disp(theta_diff)
     runningVel = Kv*d;
     runningTheta =Kp *theta_diff;
     if runningVel > maxVel
@@ -116,7 +132,7 @@ while 1
     end
      
     %% update
-    if d <= 0.5
+    if d <= 0.1
         runningVel =0;
         stopFlag = 1;
     end
@@ -131,6 +147,7 @@ while 1
     robot = recBot(x(i),y(i),theta_list(i));
     subplot(4,2,[1,2,3,4]);
 
+
     axis([0 200 0 200]);
     xlim([0 200])
     ylim([0 200])
@@ -139,7 +156,9 @@ while 1
     
 
     hold on
-    
+    title("position")
+    xlabel("x[m]")
+    ylabel("y[m]")
     
     plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r-',initRobot(3:end,1),initRobot(3:end,2),'b-');
     plot(finalPos.x,finalPos.y,'bx'); plot(finalPos.x,finalPos.y,'bo');
@@ -153,7 +172,7 @@ while 1
 %   
     %% plot vel
     subplot(4,2,7);
-    axis( [0 650 0 5.5]);
+    axis( [0 650 0 6]);
     hold on
 %     if mod(i,10)==0
         vlist(vel_idx+1)=runningVel;
