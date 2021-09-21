@@ -1,0 +1,7 @@
+clear
+close all
+clc
+
+%% get user input
+
+get_user_click
