@@ -149,7 +149,7 @@ while 1
     xlim([0 200])
     ylim([0 200])
     plot(robot(1,1),robot(1,2),'r.',robot(1:2,1),robot(1:2,2),'r-',robot(3:end,1),robot(3:end,2),'-',x,y,'-');
-    text(x(i)+10, y(i)+10, sprintf('(%.3f,%.3f, vel:%.3fm/s)', x(i),y(i),runningVel));
+    text(x(i)+10, y(i)+10, sprintf('(%.3f,%.3f),vel:%.3fm/s', x(i),y(i),runningVel));
     
 
     hold on
@@ -160,7 +160,7 @@ while 1
     
     plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r-',initRobot(3:end,1),initRobot(3:end,2),'b-');
     plot(finalPos.x,finalPos.y,'bx'); plot(finalPos.x,finalPos.y,'bo');
-    text(finalPos.x+10, finalPos.y, sprintf('(%f,%f)', finalPos.x,finalPos.y));
+    text(finalPos.x+10, finalPos.y, sprintf('(%.3f,%.3f)', finalPos.x,finalPos.y));
     hold off
     xlim([0 200])
     ylim([0 200])

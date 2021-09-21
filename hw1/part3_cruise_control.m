@@ -48,20 +48,20 @@ axis square;
 f2=subplot(1,2,2);
 grid on;
 axis([0 1500 0 5])
-ylabel("Velocity[m/s]")
-xlabel("time[0.1s]")
+ylabel("Velocity(m/s)")
+xlabel("time(0.1s)")
 % axis square;
 
 subplot(1,2,1);
 hold on
 i = 1;
-THRES = 2;
+THRES = 1;
 runningTheta = 0;
 runningVel = 0;
 
 
 
-Kp=0.3;
+Kp=0.35;
 Ki=0.001;
 Kd=0.003;
 dt = 0.1;
@@ -124,7 +124,7 @@ for state=1:3
         subplot(1,2,1)
         %plot cur bot
         plot(curRobot(1,1),curRobot(1,2),'r.',curRobot(1:2,1),curRobot(1:2,2),'r',curRobot(3:end,1),curRobot(3:end,2),'-',x,y,'r-');
-        text(x(i)+10, y(i)+10, sprintf('(%.3f,%.3f,%.3f)', x(i),y(i),runningVel),'FontSize',8);
+        text(x(i)+10, y(i)+10, sprintf('(%.2f,%.2f),v=%.2fm/s', x(i),y(i),runningVel),'FontSize',8);
         hold on
         
         grid on;
@@ -132,7 +132,7 @@ for state=1:3
         xlabel("y (m)")
         %plot prev bot
         plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r',initRobot(3:end,1),initRobot(3:end,2),'--');
-        text(init_porp_bot(1)+10, init_porp_bot(2)+10, sprintf('(%.3f,%.3f)', init_porp_bot(1),init_porp_bot(2)),'FontSize',8);
+        text(init_porp_bot(1)+10, init_porp_bot(2)+10, sprintf('(%.2f,%.2f)', init_porp_bot(1),init_porp_bot(2)),'FontSize',8);
         
         %plot 3 goals
         for each=1:MAXGOAL
