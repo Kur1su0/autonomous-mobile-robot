@@ -1,32 +1,20 @@
-function [a,b,c, k , m] = get_user_click(isClick)
-% function theta = measureAngle
-% Get four mouse clicks from the user in the current figure
+function [a,b,c] = get_user_click(isClick)
 if isClick==1
-    [p1,p2] = ginput(2);
+    [x,y] = ginput(2);
 else
     p1=[randomNum(0,200) randomNum(0,200)];
     p2=[randomNum(0,200) randomNum(0,200)];
 end
-% Draw the two lines that the four points represent
 
-%line(p1(1:2), p2(1:2));
-% Define the two vectors
+pt1.x = x(1);
+pt1.y = y(1);
 
-x = [p1(1) p1(2)];
-y = [p2(1) p2(2)];
-cc = [[1; 1]  x(:)]\y(:);
+pt2.x = x(2);
+pt2.y = y(2);
 
-% (y1 - y2) * x + (x2 - x1) * y + (x1 * y2 - x2 * y1) 
-k = cc(2)
-m = cc(1)
-a = -1 * k;
-b = -1;
-c =  m;
-% a = (p1(2) - p2(2));
-% b = (p1(1) - p2(1));
-% c = p1(1)*p2(2) - p2(1)*p1(2);
-
-%y = (a*x + c)/(-b);
+a = pt1.y-pt2.y;
+b = pt2.x-pt1.x;
+c = pt1.x * pt2.y - pt2.x * pt1.y;
 
 
 end
