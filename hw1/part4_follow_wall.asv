@@ -1,7 +1,98 @@
 clear
 close all
 clc
+%%
+CLICK_ON_PLOT=1;
+%% gen plot
+fig=figure(1);
+set(fig,'position',[400 100 1000 500]);
+f1=subplot(1,2,1);
 
+xlim([0 200])
+ylim([0 200])
+axis square;
+
+f2=subplot(1,2,2);
+grid on;
+axis([0 1500 0 3])
+ylabel("Velocity(m/s)")
+xlabel("time(0.1s)")
+% axis square;
+
+subplot(1,2,1);
+hold on
+xlim([0 200])
+ylim([0 200])
+axis square;
 %% get user input
+[a b c] = get_user_click(CLICK_ON_PLOT);
 
-get_user_click
+line_x = 0:200;
+line_y = (a*line_x - c)/b;
+plot(line_x,line_y,"r-");
+
+disp(sprintf("a=%.3f, b=%.3f, c=%.3f",a,b,c));
+
+%%
+x = [];
+y = [];
+theta = [];
+dt = 0.1;
+% init_porp_bot = [100 100 randomNum(0,2*pi)];
+initRobot = recBot(100,199, randomNum(0,2*pi) );
+i = 1;
+runningTheta = 0;
+runningVel = 0;
+
+
+
+MAX_STERRING = pi/4;
+MAX_VEL = 5;
+MAX_DIST=10;
+THRES = 1;
+
+Kt=0.5;
+Kh=0.015;
+i = 0;
+invisible_line.a = 0;
+invisible_line.b = 0;
+invisible_line.c = 0;
+while 1
+    d = (a*x(i) + b*y(i) + c) / sqrt(a^2 +b^2);
+    if d<=0
+        invisible_line.a = a ;
+        invisible_line.b = b;
+        invisible_line.c = c + MAX_DIST*sqrt(a^2 +b^2);
+        %line_y = (a*line_x - c)/b;
+        %y = a/bx - c/b
+        
+    else
+        
+    end
+    
+    alpha_t = -1 * Kt * (d + MAX_DIST);
+    
+    theta_d = atan2(-1*a,b);
+    
+    alpha_h = Kh * atan2(theta_d - theta(i));
+    
+    gamma = -1*alpha_t + alpha_h;
+    %% plot
+    % plot position
+    
+    
+    % plot velocity
+    
+   if x(i)<0 || y(i)<0
+       break;
+   end
+end
+
+
+
+
+
+
+
+
+
