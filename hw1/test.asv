@@ -1,0 +1,8 @@
+
+a = 1;
+b = 1;
+c = 30;
+line_x = 0:200;
+line_y = (-a*line_x - c)/(b);
+
+plot(line_x, lin)

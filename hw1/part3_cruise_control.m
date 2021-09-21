@@ -61,13 +61,13 @@ runningVel = 0;
 
 
 
-Kp=0.35;
+Kp=0.5;
 Ki=0.001;
 Kd=0.003;
 dt = 0.1;
 output = 0;
 
-for state=1:3
+for state=1:10
     output = 0;
     previous_error = 0;
     integral =0;

@@ -55,8 +55,8 @@ MAX_STERRING = pi/4;
 MAX_VEL = 5;
 MAX_DIST=10;
 THRES = 1;
-Kt=0.5;
-Kh=0.005;
+Kt=0.15;
+Kh=2;
 
 i = 1;
 runningTheta = 0;
@@ -75,20 +75,46 @@ runningVel = MAX_VEL;
 %     comp_d = d - MAX_DIST;
 % %     invisible_line.c = c - MAX_DIST*sqrt(a^2 +b^2);      
 % end
-
+k = 0;
+m = 0;
 CLICK_ON_PLOT=0;
+integral = 0;
+error = 0;
+previous_error = 0;
+output = 0;
+
+
+% Kp=0.5;
+% Ki=0.001;
+% Kd=0.003;
 while 1
     if i == 1
         %% get user input
-        [a b c] = get_user_click(CLICK_ON_PLOT);
+        
+        a = 25;
+        b = -23;
+        c = 840;
+%         [a b c k m] = get_user_click(1);
         line_x = 0:200;
-        line_y = (a*line_x - c)/b;
+%         line_y = k * line_x + m;
+
+        line_y = (-a*line_x - c)/(b);
         % plot(line_x,line_y,"r-");
         % hold off
         disp(sprintf("a=%.3f, b=%.3f, c=%.3f",a,b,c));
         
     end
+%     
+%     error = MAX_VEL - runningVel;
+%         integral = integral + error*dt;
+%         derivative = (error - previous_error)/dt;
+%         output =  Kp*error + Ki*integral + Kd*derivative;
+%         previous_error = error;
+%         runningVel = runningVel + output -0.01*runningVel;
+    
+    
     d = (a*x(i) + b*y(i) + c) / sqrt(a^2 +b^2);
+    ori_d = d;
     disp(d);
     if d<=0
         d = d + MAX_DIST;
@@ -97,11 +123,19 @@ while 1
     end
     
     %% update theta
-    alpha_t = -1 * Kt * (d + MAX_DIST);
+    alpha_t = -1 * Kt * (d );
 %     alpha_t = -1 * Kt * (d + MAX_DIST);
     theta_d = atan2(-1*a,b);
     alpha_h = Kh * atan2(sin(theta_d - theta(i)),cos(theta_d - theta(i)));
+
+%     alpha_h = Kh * atan2(sin(theta_d - theta(i)),cos(theta_d - theta(i)));
     runningTheta = alpha_t + alpha_h;
+    
+    if runningTheta > MAX_STERRING
+        runningTheta = MAX_STERRING;
+    elseif runningTheta < -MAX_STERRING
+        runningTheta = - MAX_STERRING;
+    end
     
     %% update x,y, theta
     x(i+1) = x(i) + runningVel * cos(theta(i)) * dt;
@@ -127,13 +161,14 @@ while 1
     ylim([0 200])
 
     % plot distance
-    d_list(i) = d;
+    d_list(i) = abs(ori_d);
     subplot(1,2,2);
     hold on
     plot(d_list,'r-');
+    axis ([0 1500 0 200])
     hold off
     
-   if x(i)<0 || y(i)<0
+   if x(i)<0 || y(i)<0 || x(i) > 200 || y(i) > 200 
        break;
    end
    i  = i + 1;
