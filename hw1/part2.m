@@ -83,9 +83,6 @@ f1=subplot(4,2,[1,2,3,4]);
 grid on;
 
 
-
-
-
 f2=subplot(4,2,7);
 grid on;
 ylabel("Velocity[m/s]")
@@ -156,6 +153,7 @@ while 1
     
 
     hold on
+    grid on
     title("position")
     xlabel("x[m]")
     ylabel("y[m]")
@@ -193,16 +191,11 @@ while 1
     plot(y,'r-');
     
     hold off
-
-
-
-    
+ 
     if stopFlag == 1
         break
     end
     i = i+1;
-    
-
 
     pause(0.01)
     %disp(i)

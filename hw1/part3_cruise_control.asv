@@ -39,6 +39,10 @@ fig=figure(1);
 set(fig,'position',[400 100 1000 500]);
 f1=subplot(1,2,1);
 
+grid on;
+ylabel("x[m]")
+xlabel("y
+")
 xlim([0 200])
 ylim([0 200])
 axis square;
@@ -47,7 +51,7 @@ axis square;
 
 f2=subplot(1,2,2);
 grid on;
-axis([0 1500 0 5])
+% axis([0 1500 0 3])
 ylabel("Velocity[m/s]")
 xlabel("time[0.1s]")
 % axis square;
@@ -61,7 +65,7 @@ runningVel = 0;
 
 
 
-Kp=0.3;
+Kp=0.5;
 Ki=0.001;
 Kd=0.003;
 dt = 0.1;
@@ -126,10 +130,6 @@ for state=1:3
         plot(curRobot(1,1),curRobot(1,2),'r.',curRobot(1:2,1),curRobot(1:2,2),'r',curRobot(3:end,1),curRobot(3:end,2),'-',x,y,'r-');
         text(x(i)+10, y(i)+10, sprintf('(%.3f,%.3f,%.3f)', x(i),y(i),runningVel),'FontSize',8);
         hold on
-        
-        grid on;
-        ylabel("x (m)")
-        xlabel("y (m)")
         %plot prev bot
         plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r',initRobot(3:end,1),initRobot(3:end,2),'--');
         text(init_porp_bot(1)+10, init_porp_bot(2)+10, sprintf('(%.3f,%.3f)', init_porp_bot(1),init_porp_bot(2)),'FontSize',8);
