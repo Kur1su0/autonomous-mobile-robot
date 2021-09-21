@@ -2,7 +2,7 @@ clear
 close all
 clc
 %%
-CLICK_ON_PLOT=0;
+% CLICK_ON_PLOT=1;
 %% gen plot
 fig=figure(1);
 set(fig,'position',[400 100 1000 500]);
@@ -20,20 +20,20 @@ xlabel("time(0.1s)")
 axis square;
 
 
-% hold on %XXX
+hold on %XXX
 subplot(1,2,1);
 xlim([0 200])
 ylim([0 200])
 axis square;
 
 %% get user input
-[a b c] = get_user_click(CLICK_ON_PLOT);
-
-line_x = 0:200;
-line_y = (a*line_x - c)/b;
-% plot(line_x,line_y,"r-");
-% hold off
-disp(sprintf("a=%.3f, b=%.3f, c=%.3f",a,b,c));
+% [a b c] = get_user_click(CLICK_ON_PLOT);
+% 
+% line_x = 0:200;
+% line_y = (a*line_x - c)/b;
+% % plot(line_x,line_y,"r-");
+% % hold off
+% disp(sprintf("a=%.3f, b=%.3f, c=%.3f",a,b,c));
 
 
 %%
@@ -56,7 +56,7 @@ MAX_VEL = 5;
 MAX_DIST=10;
 THRES = 1;
 Kt=0.5;
-Kh=0.015;
+Kh=0.005;
 
 i = 1;
 runningTheta = 0;
@@ -76,8 +76,18 @@ runningVel = MAX_VEL;
 % %     invisible_line.c = c - MAX_DIST*sqrt(a^2 +b^2);      
 % end
 
-
+CLICK_ON_PLOT=0;
 while 1
+    if i == 1
+        %% get user input
+        [a b c] = get_user_click(CLICK_ON_PLOT);
+        line_x = 0:200;
+        line_y = (a*line_x - c)/b;
+        % plot(line_x,line_y,"r-");
+        % hold off
+        disp(sprintf("a=%.3f, b=%.3f, c=%.3f",a,b,c));
+        
+    end
     d = (a*x(i) + b*y(i) + c) / sqrt(a^2 +b^2);
     disp(d);
     if d<=0
@@ -91,7 +101,7 @@ while 1
 %     alpha_t = -1 * Kt * (d + MAX_DIST);
     theta_d = atan2(-1*a,b);
     alpha_h = Kh * atan2(sin(theta_d - theta(i)),cos(theta_d - theta(i)));
-    runningTheta = -1*alpha_t + alpha_h;
+    runningTheta = alpha_t + alpha_h;
     
     %% update x,y, theta
     x(i+1) = x(i) + runningVel * cos(theta(i)) * dt;
@@ -101,6 +111,7 @@ while 1
     % plot position
     curRobot = recBot(x(i),y(i),theta(i));
     subplot(1,2,1)
+    
     plot(curRobot(1,1),curRobot(1,2),'r.',curRobot(1:2,1),curRobot(1:2,2),'r',curRobot(3:end,1),curRobot(3:end,2),'-',x,y,'r-');
     text(x(i)+10, y(i)+10, sprintf('(%.2f,%.2f),v=%.2fm/s', x(i),y(i),runningVel),'FontSize',8);
     
@@ -111,8 +122,10 @@ while 1
     plot(line_x,line_y,"r-");
     
     hold off
-    %cur pos
-    
+    axis ([0 200 0 200])
+    xlim([0 200])
+    ylim([0 200])
+
     % plot distance
     d_list(i) = d;
     subplot(1,2,2);
