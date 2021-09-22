@@ -59,7 +59,7 @@ plot(finalRobot(1,1),finalRobot(1,2),'r.');
 text(movement(1)+10, movement(2), sprintf('(%d,%d, %f)', movement(1),movement(2),movement(3)));
 % text(finalX+10, finalY, sprintf('(%d,%d, %f)', finalX,finalY,movement(3)));
 
-legend("before","after");
+legend("Before","","","After");
 xlim([0 200])
 ylim([0 200])
 axis square;

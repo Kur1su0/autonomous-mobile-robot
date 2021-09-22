@@ -80,7 +80,6 @@ hold on
 
 set(fig,'position',[200 100 1500 800]);
 f1=subplot(1,2,1);
-grid on;
 
 
 f2=subplot(1,2,2);
@@ -114,7 +113,7 @@ while 1
     
     
     
-    disp(theta_diff)
+%     disp(theta_diff)
     runningVel = Kv*d;
     runningTheta =Kp *theta_diff;
     if runningVel > maxVel
@@ -149,7 +148,7 @@ while 1
     axis([0 200 0 200]);
     xlim([0 200])
     ylim([0 200])
-    plot(robot(1,1),robot(1,2),'r.',robot(1:2,1),robot(1:2,2),'r-',robot(3:end,1),robot(3:end,2),'-',x,y,'-');
+    plot(robot(1,1),robot(1,2),'r.',robot(1:2,1),robot(1:2,2),'r-',robot(3:end,1),robot(3:end,2),'-',x,y,'r-');
     text(x(i)+10, y(i)+10, sprintf('(%.3f,%.3f),vel:%.3fm/s', x(i),y(i),runningVel));
     
 
@@ -159,13 +158,17 @@ while 1
     xlabel("x (m)")
     ylabel("y (m)")
     
-    plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r-',initRobot(3:end,1),initRobot(3:end,2),'b-');
+    plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r-',initRobot(3:end,1),initRobot(3:end,2),'--');
     plot(finalPos.x,finalPos.y,'bx'); plot(finalPos.x,finalPos.y,'bo');
     text(finalPos.x+10, finalPos.y, sprintf('(%.3f,%.3f)', finalPos.x,finalPos.y));
-    hold off
-    xlim([0 200])
+    
+    text(x(1)+10, y(1), sprintf('(%.3f,%.3f)', x(1), y(1)));
+    grid on;
+     xlim([0 200])
     ylim([0 200])
     axis square;
+    hold off
+   
     
 
 %   
@@ -202,6 +205,8 @@ while 1
     %disp(i)
     
 end
+subplot(1,2,1)
+legend("","","Cur Pos","Path","","","Init Pos","Goal");
 
 %     plot(initRobot(3:end,1),initRobot(3:end,2),'-',initRobot(1,1),initRobot(1,2),'r-');
 %     text(initPos.x+10, initPos.y, sprintf('(%f,%f)', initPos.x,initPos.y));

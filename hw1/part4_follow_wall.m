@@ -7,6 +7,7 @@ clc
 fig=figure(1);
 set(fig,'position',[400 100 1000 500]);
 f1=subplot(1,2,1);
+grid on;
 axis ([0 200 0 200])
 xlim([0 200])
 ylim([0 200])
@@ -14,7 +15,7 @@ axis square;
 
 f2=subplot(1,2,2);
 grid on;
-
+title("Dist - Time");
 ylabel("dist m")
 xlabel("time(0.1s)")
 axis square;
@@ -64,6 +65,8 @@ runningVel = MAX_VEL;
 
 k = 0;
 m = 0;
+% if 1 -> accept usr input
+% else -> random
 CLICK_ON_PLOT=1;
 integral = 0;
 error = 0;
@@ -86,16 +89,10 @@ while 1
         ylim([0 200])
         axis square;
         [a b c] = get_user_click(CLICK_ON_PLOT);
-        
-        
 
         line_x = 0:200;
         line_y = (-a*line_x - c)/(b);
         
-        
-        % plot(line_x,line_y,"r-");
-        % hold off
-%         disp(sprintf("a=%.3f, b=%.3f, c=%.3f",a,b,c));
         
     end
 
@@ -111,7 +108,7 @@ while 1
     
     %% update theta
     alpha_t = -1 * Kt * (d );
-%     alpha_t = -1 * Kt * (d + MAX_DIST);
+
     theta_d = atan2(-1*a,b);
     alpha_h = Kh * atan2(sin(theta_d - theta(i)),cos(theta_d - theta(i)));
 
@@ -142,7 +139,14 @@ while 1
     text(init_bot_pos(1)+10, init_bot_pos(2)+10, sprintf('(%.2f,%.2f)', init_bot_pos(1),init_bot_pos(2)),'FontSize',8);
     plot(line_x,line_y,"b-");
     
-    text (130, line_y(130)+20,sprintf('%.2fX+%.2fY+%.2f = 0',a,b,c),'FontSize',8);
+    title("Position");
+    
+    ylabel("Y (m)")
+    xlabel("X (m)")
+    axis square;
+    
+    
+%     text (130, line_y(130)+20,sprintf('%.2fX+(%.2fY)+(%.2f) = 0',a,b,c),'FontSize',8);
    
     
     hold off
@@ -157,7 +161,7 @@ while 1
     subplot(1,2,2);
     hold on
     plot(d_list,'r-');
-%     axis ([0 1500 0 200])
+%     axis ([0 300 0 150])
     hold off
     
     if x(i)<0 || y(i)<0 || x(i) > 200 || y(i) > 200 
@@ -166,6 +170,9 @@ while 1
     i  = i + 1;
     pause(0.01);
 end
+
+subplot(1,2,1)
+legend("","","Cur Pos","","","Trajectory","Init Pos","Wall");
 
 
 

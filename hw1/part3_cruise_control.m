@@ -38,9 +38,7 @@ initRobot = recBot(init_porp_bot(1),init_porp_bot(2),init_porp_bot(3));
 fig=figure(1);
 set(fig,'position',[400 100 1000 500]);
 f1=subplot(1,2,1);
-
-xlim([0 200])
-ylim([0 200])
+axis([0 200 0 200])
 axis square;
 
 
@@ -48,6 +46,7 @@ axis square;
 f2=subplot(1,2,2);
 grid on;
 axis([0 1500 0 3])
+title("Velocity - Time")
 ylabel("Velocity(m/s)")
 xlabel("time(0.1s)")
 % axis square;
@@ -67,14 +66,14 @@ Kd=0.003;
 dt = 0.1;
 output = 0;
 
-for state=1:10
+for state=1:3
     output = 0;
     previous_error = 0;
     integral =0;
 
     while 1
         d = sqrt (  (goalArr(state).x-x(i))^2 + (goalArr(state).y-y(i))^2 );
-        disp(state)
+%         disp(state)
         %% PID fro Vel
         
         error = Vref - runningVel;
@@ -88,15 +87,7 @@ for state=1:10
         %% get theta
         thetaD = atan2((goalArr(state).y - y(i)),(goalArr(state).x-x(i))  );
         theta_diff=atan2(sin(thetaD-theta(i)),cos(thetaD-theta(i)  ) ) ;
-%         theta_diff=thetaD-theta(i);
-%         if theta_diff>pi
-%             theta_diff=theta_diff-2*pi;
-%             disp("LARGE")
-%         elseif theta_diff<-pi
-%             theta_diff=theta_diff+2*pi;
-%             disp("SMALL")
-%         end
-    
+
         runningTheta =Kp *theta_diff;
         if runningTheta > MAX_STERRING
             runningTheta = MAX_STERRING;
@@ -124,8 +115,9 @@ for state=1:10
         hold on
         
         grid on;
-        ylabel("x (m)")
-        xlabel("y (m)")
+        title ('Position')
+        ylabel("y (m)")
+        xlabel("x (m)")
         %plot prev bot
         plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r',initRobot(3:end,1),initRobot(3:end,2),'--');
         text(init_porp_bot(1)+10, init_porp_bot(2)+10, sprintf('(%.2f,%.2f)', init_porp_bot(1),init_porp_bot(2)),'FontSize',8);
@@ -149,6 +141,7 @@ for state=1:10
         vel(i+1) = runningVel;
         
         hold on
+        
         plot(vel,'r-');
         hold off
         
@@ -167,6 +160,8 @@ for state=1:10
     end
       
 end
+subplot(1,2,1)
+legend("","","Cur Pos","Path","","","Init Pos","Goal1","Goal2","Goal3");
 
 %plot bot
 % i=1;

@@ -27,8 +27,8 @@ axis([0 2000 0 5.5])
 grid on;
 grid on;
 title("Velocity - Time")
-ylabel("Velocity[m/s]")
-xlabel("time[0.1s]")
+ylabel("Velocity (m/s)")
+xlabel("time (0.1s)")
 
 %Init positions for the robot
 p1.x =  randomNum(0,200);
@@ -52,15 +52,15 @@ y(1) = p1.y;
 theta(1) = p1.theta;
 i = 1;
 Kp = 0.5;
-Ki = 0.001;
-Kh = 1;
+Ki = 0.003;
+Kh = 1.7;
 runningVel = 0;
 runningTheta = 0;
 integral = 0;
 
 
 %% gen circle
-angles = linspace(0, 2*pi,720*2);
+angles = linspace(0, 2*pi,720*1.5);
 Cx = r * cos(angles) + center(1); 
 Cy = r * sin(angles) + center(2);
 % disp(Cx)
@@ -107,11 +107,14 @@ while 1
     curRobot = recBot(x(i),y(i),theta(i));
     subplot(1,2,1)
     
-    plot(curRobot(1,1),curRobot(1,2),'r.',curRobot(1:2,1),curRobot(1:2,2),'r',curRobot(3:end,1),curRobot(3:end,2),'-',x,y,'r-');
+    plot(curRobot(1,1),curRobot(1,2),'r.',curRobot(1:2,1),curRobot(1:2,2),'-',curRobot(3:end,1),curRobot(3:end,2),'-',x,y,'r-');
     text(x(i)+10, y(i)+10, sprintf('(%.2f,%.2f),v=%.2fm/s', x(i),y(i),runningVel),'FontSize',8);
     
     hold on;
-   
+    grid on
+    title("Posittion");
+    xlabel("x (m)");
+    ylabel("x (m)");
     plot(Cx(where),Cy(where),'gx');
     plot(Cx,Cy,'b-');
     plot(100,100,'bx')
