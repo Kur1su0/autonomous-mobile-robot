@@ -142,11 +142,14 @@ while 1
     text(init_bot_pos(1)+10, init_bot_pos(2)+10, sprintf('(%.2f,%.2f)', init_bot_pos(1),init_bot_pos(2)),'FontSize',8);
     plot(line_x,line_y,"b-");
     
+    text (130, line_y(130)+20,sprintf('%.2fX+%.2fY+%.2f = 0',a,b,c),'FontSize',8);
+   
     
     hold off
     axis ([0 200 0 200])
     xlim([0 200])
     ylim([0 200])
+    
     axis square;
 
     % plot distance

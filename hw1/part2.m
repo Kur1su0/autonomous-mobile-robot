@@ -77,18 +77,19 @@ runningVel = 0;
 
 fig=figure(1);
 hold on
-title("Part ")
-set(fig,'position',[100 100 800 800]);
-f1=subplot(4,2,[1,2,3,4]);
+
+set(fig,'position',[200 100 1500 800]);
+f1=subplot(1,2,1);
 grid on;
 
 
-f2=subplot(4,2,7);
+f2=subplot(1,2,2);
 grid on;
+title("Velocity - Time")
 ylabel("Velocity[m/s]")
 xlabel("time[0.1s]")
 
-f3=subplot(4,2,8);grid on;
+
 vlist = [];
 vlist(1) = 0;
 
@@ -142,7 +143,7 @@ while 1
     
    
     robot = recBot(x(i),y(i),theta_list(i));
-    subplot(4,2,[1,2,3,4]);
+    subplot(1,2,1);
 
 
     axis([0 200 0 200]);
@@ -155,8 +156,8 @@ while 1
     hold on
     grid on
     title("position")
-    xlabel("x[m]")
-    ylabel("y[m]")
+    xlabel("x (m)")
+    ylabel("y (m)")
     
     plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r-',initRobot(3:end,1),initRobot(3:end,2),'b-');
     plot(finalPos.x,finalPos.y,'bx'); plot(finalPos.x,finalPos.y,'bo');
@@ -169,7 +170,7 @@ while 1
 
 %   
     %% plot vel
-    subplot(4,2,7);
+    subplot(1,2,2);
     axis( [0 650 0 6]);
     hold on
 %     if mod(i,10)==0
@@ -184,13 +185,13 @@ while 1
     plot(vlist,'b-');
     hold off
     
-    subplot(4,2,8);
-    axis( [0 650 0 210]);
-    hold on
-    plot(x,'b-');
-    plot(y,'r-');
-    
-    hold off
+%     subplot(1,2,2);
+%     axis( [0 650 0 210]);
+%     hold on
+%     plot(x,'b-');
+%     plot(y,'r-');
+%     
+%     hold off
  
     if stopFlag == 1
         break
