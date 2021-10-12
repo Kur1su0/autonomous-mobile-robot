@@ -40,7 +40,7 @@ axis square;
 
 
 subplot(1,3,3);
-ix=1:5:199;
+ix=1:1:199;
 demo_X = X(ix,ix);
 demo_Y = Y(ix,ix);
 demo_Fx = Fx(ix,ix); 
@@ -52,7 +52,7 @@ hold on
 % [F_att_X,F_att_Y] = Fatt(X, Y, qGoal);
 % 
 % quiver(X,Y,F_att_X,F_att_Y);
-quiver(demo_X,demo_Y,demo_Fx,demo_Fy);
+quiver(X,Y,Fx,Fy);
 plot(qGoal(1),qGoal(2),'rx');
 plot(obstacle(1),obstacle(2),'bx');
 xlim([0 100]);
