@@ -1,8 +1,7 @@
 %transformatino and rotate the robot
 %---------------------------------------------------------------------------------
 %| Test homogeneous transformation
-%| 1. init a TriangularRobot point at 
-%| some where based on cur center position, 
+%| 1. init a TriangularRobot point
 %| 2. move the robot to x=20, y=30, angule= pi/6 (by calling functio: moveRotate)
 %| 3. Draw init and final position
 %----------------------------------------------------------------------------------

@@ -1,8 +1,8 @@
 clear
 close all
 clc
-%%
-% CLICK_ON_PLOT=1;
+%% if CLICK_ON_PLOT == 1 -> click on plot to gen line. othervise, gen line randomly.
+CLICK_ON_PLOT=1;
 %% gen plot
 fig=figure(1);
 set(fig,'position',[400 100 1000 500]);
@@ -67,7 +67,7 @@ k = 0;
 m = 0;
 % if 1 -> accept usr input
 % else -> random
-CLICK_ON_PLOT=1;
+% CLICK_ON_PLOT=1;
 integral = 0;
 error = 0;
 previous_error = 0;
@@ -96,17 +96,17 @@ while 1
         
     end
 
-    
+    %% cal d
     d = (a*x(i) + b*y(i) + c) / sqrt(a^2 +b^2);
     ori_d = d;
-    disp(d);
+%     disp(d);
     if d<=0
         d = d + MAX_DIST;
     else
         d = d - MAX_DIST;
     end
     
-    %% update theta
+    %% cal theta
     alpha_t = -1 * Kt * (d );
 
     theta_d = atan2(-1*a,b);

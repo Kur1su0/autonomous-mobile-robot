@@ -115,9 +115,8 @@ while 1
     title("Posittion");
     xlabel("x (m)");
     ylabel("x (m)");
-    plot(Cx(where),Cy(where),'gx');
+    plot(Cx(where),Cy(where),'bx');
     plot(Cx,Cy,'b-');
-    plot(100,100,'bx')
     plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r',initRobot(3:end,1),initRobot(3:end,2),'--');
     text(p1.x+10, p1.y+10, sprintf('(%.2f,%.2f)', p1.x, p1.y),'FontSize',8);
     hold off;
