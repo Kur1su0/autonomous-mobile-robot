@@ -5,9 +5,9 @@ xlim([0 100]);
 ylim([0 100]);
 
 fig=figure(1);
-
-
-set(fig,'position',[200 100 1500 800]);
+% 
+% 
+% set(fig,'position',[200 100 1500 800]);
 qGoal = [80;20];
 subplot(1,3,1);
 hold on
@@ -17,7 +17,8 @@ hold on
 
 
 [X,Y]=meshgrid(1:0.5:100,1:0.5:100);
-Uatt=1/2*( (X-qGoal(1)).^2 + (Y-qGoal(2)).^2);
+epsilon = 1;
+Uatt=1/2*epsilon*( (X-qGoal(1)).^2 + (Y-qGoal(2)).^2);
 disp(size(Uatt))
 [F_att_X,F_att_Y] = Fatt(X, Y, qGoal);
 
