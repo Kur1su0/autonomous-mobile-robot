@@ -41,7 +41,7 @@ axis square;
 
 
 subplot(1,3,3);
-ix=1:1:199;
+ix=1:5:199;
 demo_X = X(ix,ix);
 demo_Y = Y(ix,ix);
 demo_Fx = Fx(ix,ix); 

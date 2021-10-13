@@ -53,7 +53,7 @@ F_sum_X = F_att_X + Frep_X;
 F_sum_Y = F_att_Y + Frep_Y;
 
 %% scale
-ix=1:1:199;
+ix=1:10:199;
 
 demo_X = X(ix,ix);
 demo_Y = Y(ix,ix);
@@ -75,7 +75,7 @@ axis square;
 
 subplot(1,3,2)
 
-surf(demo_X,demo_Y,demo_U_sum);
+surf(X,Y,U_sum);
 
 shading interp
 xlim([0 100]);
