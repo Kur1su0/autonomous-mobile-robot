@@ -11,7 +11,7 @@ y = [];
 theta = [];
 x(1) = qStart(1);
 y(1) = qStart(2);
-theta(1) = -pi/8;
+theta(1) = -pi/6;
 % theta = [];
 % theta(1) = 0;
 meanX = mean([30,50,50,30]);
@@ -19,7 +19,7 @@ meanY = mean([50,50,70,70]);
 obstacle = [meanX, meanY];
 
 epsilon = 1;
-eta = 200;
+eta = 80;
 rho_0 = 20;
 stopFlag = 0;
 dt = 0.1;
@@ -53,8 +53,8 @@ axis square;
 
 
 
-Kv=0.2;
-Kp = 0.2;
+Kv=2;
+Kp = 2;
 while 1
     
     %% F att & F rep
@@ -78,11 +78,11 @@ while 1
     end
     
     runningAngle = Kp * theta_diff;
-    if runningAngle > ANGLEMAX
-        runningAngle = ANGLEMAX;
-    elseif runningAngle <- ANGLEMAX
-        runningAngle = -ANGLEMAX;
-    end
+%     if runningAngle > ANGLEMAX
+%         runningAngle = ANGLEMAX;
+%     elseif runningAngle <- ANGLEMAX
+%         runningAngle = -ANGLEMAX;
+%     end
     
     
     if dist <= 1.5
@@ -114,7 +114,7 @@ finalRobot = recBot(x(end),y(end),theta(end));
 
 plot(finalRobot(1,1),finalRobot(1,2),'r.',finalRobot(1:2,1),finalRobot(1:2,2),'r-',finalRobot(3:end,1),finalRobot(3:end,2),'-');
 plot(x,y,'r.');
-
+title("non-holonomic robot");
 xlim([0 100]);
 ylim([0 100]);
 axis square;

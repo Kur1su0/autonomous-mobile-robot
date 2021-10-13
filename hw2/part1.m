@@ -38,6 +38,7 @@ epsilon = 1;
 contour_num = 40;
 contour(X,Y,Uatt,contour_num);
 plot(qGoal(1),qGoal(2),'rx');
+title("Contour - Uatt");
 
 xlim([0 100]);
 ylim([0 100]);
@@ -45,7 +46,9 @@ axis square;
 
 %% show potiential field
 subplot(1,3,2);
-surf(demo_X,demo_Y,demo_Uatt);
+surf(X,Y,Uatt);
+shading interp
+title("Uatt");
 xlim([0 100]);
 ylim([0 100]);
 axis square;
@@ -57,6 +60,7 @@ subplot(1,3,3);
 hold on;
 quiver(demo_X,demo_Y,demo_F_att_X,demo_F_att_Y);
 plot(qGoal(1),qGoal(2),'rx');
+title("Fatt")
 disp(F_att_X)
 xlim([0 100]);
 ylim([0 100]);

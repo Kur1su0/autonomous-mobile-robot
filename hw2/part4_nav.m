@@ -16,7 +16,7 @@ meanY = mean([50,50,70,70]);
 obstacle = [meanX, meanY];
 
 epsilon = 1;
-eta = 200;
+eta = 80;
 rho_0 = 20;
 stopFlag = 0;
 dt = 0.1;
@@ -89,15 +89,16 @@ while 1
     
     
     
-    plot(x,y,'r.');
+   
+end
+
+ plot(x,y,'r.');
+ title("holonomic robot");
     xlim([0 100]);
     ylim([0 100]);
     axis square;
-    pause(0.01)
+%     pause(0.01)
     
-end
-
-
 
 
 
