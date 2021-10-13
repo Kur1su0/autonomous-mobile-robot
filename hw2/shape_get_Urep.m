@@ -34,11 +34,11 @@ for i = 1:R
             
         elseif 50 <= Y(i,j) && Y(i,j) <= 70 && X(i,j) <= 30
         % left case
-            q(i,j) =  X(i,j) - 30;
+            q(i,j) =  abs(X(i,j) - 30);
             
         elseif  50 <= Y(i,j) && Y(i,j) <= 70 && X(i,j) >=50
         % right case
-            q(i,j) =  50 - X(i,j);
+            q(i,j) =  abs(50 - X(i,j));
             
         elseif X(i,j) < 30 && Y(i,j) > 70
             %upper left p1
@@ -53,8 +53,7 @@ for i = 1:R
         elseif X(i,j) > 50 && Y(i,j)<50
             %lower right
             q(i,j) = sqrt( (X(i,j)- 50).^2 + (Y(i,j)- 50).^2 );
-        elseif X(i,j)>= 30 && X(i,j)<=50 && Y(i,j) >=50 && Y(i,j)<=70
-            q(i,j) = 0;
+
         
         else
         end       
