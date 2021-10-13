@@ -74,12 +74,11 @@ for i = 1:R
             q(i,j) = 0;
         
         else
-        end  
-     
+        end       
     end
     
 end
-
+mask = 
 
 % mask = q <= rho_zero;
 % Urep = 1/2 .* eta .*((1.0./q  - 1.0./rho_zero).^2 ) .* mask;

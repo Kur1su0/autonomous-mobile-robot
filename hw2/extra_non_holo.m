@@ -5,13 +5,13 @@ clear all;
 qGoal  = [80;20];
 qStart =[10;80];
 VMAX = 5;
-ANGLEMAX=pi/4;
+ANGLEMAX=pi/6;
 x = [];
 y = [];
 theta = [];
 x(1) = qStart(1);
 y(1) = qStart(2);
-theta(1) = -pi/8;
+theta(1) = 0;
 % theta = [];
 % theta(1) = 0;
 meanX = mean([30,50,50,30]);
@@ -19,8 +19,8 @@ meanY = mean([50,50,70,70]);
 obstacle = [meanX, meanY];
 
 epsilon = 1;
-eta = 3000;
-rho_0 = 2;
+eta = 200;
+rho_0 = 20;
 stopFlag = 0;
 dt = 0.1;
 i = 1;
@@ -54,7 +54,7 @@ axis square;
 
 
 Kv=0.2;
-Kp = 0.2;
+Kp =0.2;
 while 1
     
     %% F att & F rep
@@ -78,11 +78,11 @@ while 1
     end
     
     runningAngle = Kp * theta_diff;
-    if runningAngle > ANGLEMAX
-        runningAngle = ANGLEMAX;
-    elseif runningAngle <- ANGLEMAX
-        runningAngle = -ANGLEMAX;
-    end
+%     if runningAngle > ANGLEMAX
+%         runningAngle = ANGLEMAX;
+%     elseif runningAngle <- ANGLEMAX
+%         runningAngle = -ANGLEMAX;
+%     end
     
     
     if dist <= 1.5
