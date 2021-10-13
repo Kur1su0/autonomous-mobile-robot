@@ -17,10 +17,10 @@ hold on
 
 
 [X,Y]=meshgrid(1:0.5:100,1:0.5:100);
-epsilon = 1;
+epsilon = 1/60;
 Uatt=1/2*epsilon*( (X-qGoal(1)).^2 + (Y-qGoal(2)).^2);
 disp(size(Uatt))
-[F_att_X,F_att_Y] = Fatt(X, Y, qGoal);
+[F_att_X,F_att_Y] = Fatt(X, Y, qGoal,epsilon);
 
 %% scale
 ix=1:5:200;

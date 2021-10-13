@@ -16,11 +16,19 @@ Uatt=1/2 *epsilon.*( (X-qGoal(1)).^2 + (Y-qGoal(2)).^2);
 [F_att_X,F_att_Y] = Fatt(X, Y, qGoal,epsilon);
 
 %% rep
-eta = 200;
+eta = 3000;
 rho_0 = 20;
-Urep = get_Urep(obstacle,X, Y, eta,rho_0);
+Urep =  shape_get_Urep(X, Y,obstacle, eta,rho_0);
 [Frep_X,Frep_Y] = get_Frep(X,Y,obstacle,eta,rho_0);
-
+% contour_num =40;
+% contour(X,Y,Urep,contour_num);
+% 
+% figure
+% surf(X,Y,Urep);
+% shading interp
+% xlim([0 100]);
+% ylim([0 100]);
+% axis square;
 
 U_sum = Uatt + Urep;
 F_sum_X = F_att_X + Frep_X;

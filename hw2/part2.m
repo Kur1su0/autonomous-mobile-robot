@@ -16,8 +16,8 @@ obstacle = [meanX, meanY];
 %% cal attractive potential filed
 %u
 [X,Y]=meshgrid(1:1:100,1:1:100);
-eta = 3000;
-rho_0 = 2000;
+eta = 300;
+rho_0 = 20;
 Urep = get_Urep(obstacle,X, Y, eta,rho_0);
 [Fx,Fy] = get_Frep(X,Y,obstacle,eta,rho_0);
 
@@ -51,8 +51,9 @@ hold on
 % 
 %[F_att_X,F_att_Y] = Fatt(X, Y, qGoal);
 % 
-% quiver(X,Y,F_att_X,F_att_Y);
-quiver(Fx,Fy);
+quiver(demo_X,demo_Y,demo_Fx,demo_Fy);
+
+
 plot(qGoal(1),qGoal(2),'rx');
 plot(obstacle(1),obstacle(2),'bx');
 xlim([0 100]);
