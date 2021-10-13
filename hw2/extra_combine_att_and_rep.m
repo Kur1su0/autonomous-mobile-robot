@@ -21,45 +21,20 @@ rho_0 = 20;
 Urep =  shape_get_Urep(X, Y,obstacle, eta,rho_0);
 [Frep_X,Frep_Y] = shape_get_Frep(X,Y,obstacle,eta,rho_0);
 
-% ix=1:1:199;
-% 
-% demo_X = X(ix,ix);
-% demo_Y = Y(ix,ix);
-% demo_Frep_X = Frep_X(ix,ix); 
-% demo_Frep_Y = Frep_Y(ix,ix);
-% 
-% hold on
-% quiver(demo_X,demo_Y,demo_Frep_X,demo_Frep_Y);
-% plot(qGoal(1),qGoal(2),'rx');
-% plot(obstacle(1),obstacle(2),'bx');
-% xlim([0 100]);
-% ylim([0 100]);
-% axis square;
 
-% 
-% contour_num =40;
-% contour(X,Y,Urep,contour_num);
-% 
-% figure
-% surf(X,Y,Urep);
-% shading interp
-% xlim([0 100]);
-% ylim([0 100]);
-% axis square;
-% 
 %% sum up
 U_sum = Uatt + Urep;
 F_sum_X = F_att_X + Frep_X;
 F_sum_Y = F_att_Y + Frep_Y;
 
 %% scale
-ix=1:5:199;
+scale=1:5:199;
 
-demo_X = X(ix,ix);
-demo_Y = Y(ix,ix);
-demo_F_sum_X = F_sum_X(ix,ix); 
-demo_F_sum_Y = F_sum_Y(ix,ix);
-demo_U_sum = U_sum(ix,ix);
+demo_X = X(scale,scale);
+demo_Y = Y(scale,scale);
+demo_F_sum_X = F_sum_X(scale,scale); 
+demo_F_sum_Y = F_sum_Y(scale,scale);
+demo_U_sum = U_sum(scale,scale);
 
 
 %% show contour

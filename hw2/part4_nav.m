@@ -23,7 +23,7 @@ dt = 0.1;
 i = 1;
 
 %% initial plot
-[initX,initY]=meshgrid(1:0.5:100.,1:0.5:100);
+[initX,initY]=meshgrid(1:2:100.,1:2:100);
 [initF_att_X,initF_att_Y] = Fatt(initX, initY, qGoal,epsilon);
 %% rep
 [initFrep_X,initFrep_Y] = get_Frep(initX,initY,obstacle,eta,rho_0);
@@ -67,7 +67,7 @@ while 1
         runningVel = - VMAX;
     end
     
-    if dist <= 2
+    if dist <= 1
         runningVel =0;
         stopFlag = 1;
         F_sum_X = 0;

@@ -23,12 +23,12 @@ disp(size(Uatt))
 [F_att_X,F_att_Y] = Fatt(X, Y, qGoal,epsilon);
 
 %% scale
-ix=1:5:200;
-demo_X = X(ix,ix);
-demo_Y = Y(ix,ix);
-demo_F_att_X = F_att_X(ix,ix); 
-demo_F_att_Y = F_att_Y(ix,ix);
-demo_Uatt = Uatt(ix,ix) ;
+scale=1:5:200;
+demo_X = X(scale,scale);
+demo_Y = Y(scale,scale);
+demo_F_att_X = F_att_X(scale,scale); 
+demo_F_att_Y = F_att_Y(scale,scale);
+demo_Uatt = Uatt(scale,scale) ;
 
 
 epsilon = 1;
