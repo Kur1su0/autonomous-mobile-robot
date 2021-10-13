@@ -16,7 +16,7 @@ meanY = mean([50,50,70,70]);
 obstacle = [meanX, meanY];
 
 epsilon = 3;
-eta = 200;
+eta = 300;
 rho_0 = 20;
 stopFlag = 0;
 dt = 0.1;
