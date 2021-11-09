@@ -7,10 +7,7 @@ Fx = zeros(size(X));
 Fy =  zeros(size(X));
 
 q = zeros(size(X));
-bot=50;
-up=70;
-left=30;
-right=50;
+
 %(30,70) p1
 %(50,70) p2
 %(30,50) p3
@@ -107,30 +104,6 @@ for i=1:R
 end
 
 
-% 
-% for i=1:R
-%     for j = 1:C
-%         if X(i,j)>= 30 && X(i,j)<=50 && Y(i,j) >=50 && Y(i,j)<=70
-%             Urep(i,j) = max(max(Urep));
-%         elseif q(i,j) <= rho_zero
-%             Urep(i,j) = 1/2 * eta *((1.0./q(i,j)  - 1.0./rho_zero).^2 );
-%         end
-%     end
-% end
-% n=30;
-% q=q./n+1;
-% for i=1:R
-%     for j = 1:C
-%         if q(i,j) <= rho_zero
-%             Fx(i,j)= eta*( 1/q(i,j) - 1/rho_zero)* (1/q(i,j))^3 * (X(i,j)-b_pos(i,j));
-%             Fy(i,j)= eta*( 1/q(i,j) - 1/rho_zero)* (1/q(i,j))^3* (Y(i,j)-b_pos(i,j));
-%             
-%         else
-%             Fx(i,j) = 0;
-%             Fy(i,j) = 0;
-%         end
-%     end
-% end
 
 
 end

@@ -1,0 +1,18 @@
+close all;
+clear all;
+
+xlim([0 100]);
+ylim([0 100]);
+
+
+%Sensor
+sensor1_sigma = 6;
+sensor2_sigma = 4;
+sensor = [
+    1 0 0 0; 0 0 1 0; % 1
+    1 0 0 0; 0 0 1 0; % 2
+    ];
+
+goal1 = [25,25 sin(pi/4)]
+goal2 = [ 25+50*cos(-0.5),50+50*sin(-0.5)]
+fig=figure(1);

@@ -78,11 +78,11 @@ while 1
     end
     
     runningAngle = Kp * theta_diff;
-%     if runningAngle > ANGLEMAX
-%         runningAngle = ANGLEMAX;
-%     elseif runningAngle <- ANGLEMAX
-%         runningAngle = -ANGLEMAX;
-%     end
+    if runningAngle > ANGLEMAX
+        runningAngle = ANGLEMAX;
+    elseif runningAngle <- ANGLEMAX
+        runningAngle = -ANGLEMAX;
+    end
     
     
     if dist <= 1

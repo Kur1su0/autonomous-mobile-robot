@@ -4,10 +4,7 @@ function [Urep] = shape_get_Urep(X,Y,obstacle,eta,rho_zero)
 
 Urep = zeros(size(X));
 q = zeros(size(X));
-bot=50;
-up=70;
-left=30;
-right=50;
+
 %(30,70) p1
 %(50,70) p2
 %(30,50) p3

@@ -5,7 +5,7 @@ clear all;
 qGoal  = [80;20];
 qStart =[10;80];
 VMAX = 5;
-ANGLEMAX=pi/6;
+ANGLEMAX=pi/4;
 x = [];
 y = [];
 theta = [];
@@ -78,14 +78,14 @@ while 1
     end
     
     runningAngle = Kp * theta_diff;
-%     if runningAngle > ANGLEMAX
-%         runningAngle = ANGLEMAX;
-%     elseif runningAngle <- ANGLEMAX
-%         runningAngle = -ANGLEMAX;
-%     end
+    if runningAngle > ANGLEMAX
+        runningAngle = ANGLEMAX;
+    elseif runningAngle <- ANGLEMAX
+        runningAngle = -ANGLEMAX;
+    end
     
     
-    if dist <= 5
+    if dist <= 1
         runningVel =0;
         stopFlag = 1;
         F_sum_X = 0;
