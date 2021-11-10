@@ -50,9 +50,9 @@ axis square;
 f2=subplot(1,2,2);
 grid on;
 axis([0 1500 0 3])
-title("Velocity - Time")
-ylabel("Velocity(m/s)")
-xlabel("time(0.1s)")
+%title("Velocity - Time");
+%ylabel("Velocity m/s");
+%xlabel("time(0.1s)");
 % axis square;
 
 % subplot(1,2,1);
@@ -120,8 +120,8 @@ for state=1:3
         
         grid on;
         title ('Position')
-        ylabel("y (m)")
-        xlabel("x (m)")
+        %ylabel("y (m)")
+        %xlabel("x (m)")
         %plot prev bot
         plot(initRobot(1,1),initRobot(1,2),'r.',initRobot(1:2,1),initRobot(1:2,2),'r',initRobot(3:end,1),initRobot(3:end,2),'--');
         text(init_porp_bot(1)+10, init_porp_bot(2)+10, sprintf('(%.2f,%.2f)', init_porp_bot(1),init_porp_bot(2)),'FontSize',8);
