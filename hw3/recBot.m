@@ -1,8 +1,8 @@
 function [robot] = recBot(x,y,theta)
 
 center = [x y];
-h = 8;
-w = 16;
+h = 2;
+w = 4;
 % Robot triangle shape
  % 8 x 4
  % a     b
